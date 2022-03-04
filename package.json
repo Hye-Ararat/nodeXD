@@ -1,0 +1,62 @@
+{
+  "_from": "hyexd",
+  "_id": "hyexd@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-UEbhPml/wCr85D6PjanGpBdRDpt1DZ7kWk/dq3vyTZGFTmbbBspk3hPENtj6cFZ9pv84JPi8b2AxVt3W4Yk/PQ==",
+  "_location": "/hyexd",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "hyexd",
+    "name": "hyexd",
+    "escapedName": "hyexd",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hyexd/-/hyexd-0.0.1.tgz",
+  "_shasum": "a175f7335128cc0bdd700786aab7e9ab65b4b09f",
+  "_spec": "hyexd",
+  "_where": "/Users/josephmaldjian/Desktop/test",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Hye-Ararat/nodeXD/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "axios": "^0.26.0",
+    "typescript": "^4.5.4",
+    "ws": "^8.5.0"
+  },
+  "deprecated": false,
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/ws": "^8.5.2",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^8.10.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "homepage": "https://github.com/Hye-Ararat/nodeXD#readme",
+  "license": "GPL-3.0-or-later",
+  "main": "dist/index.js",
+  "name": "hyexd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hye-Ararat/nodeXD.git"
+  },
+  "scripts": {
+    "dev": "tsc-watch --onSuccess \"node index.js\"",
+    "lint": "eslint . --ext .ts"
+  },
+  "types": "./dist/index.d.ts",
+  "version": "0.0.3"
+}
