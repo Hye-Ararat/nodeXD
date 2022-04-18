@@ -42,8 +42,8 @@ export default class Instance {
                 let res = await this.client.request.post(`/1.0/instances/${this.name}/console`, {
                     type
                 })
-                let ws1 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds[0]}`);
-                let ws2 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds[1]}`);
+                let ws1 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["0"]}`);
+                let ws2 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["control"]}`);
                 resolve({
                     stdout: ws1,
                     stdin: ws2
