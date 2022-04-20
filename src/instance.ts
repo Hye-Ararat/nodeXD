@@ -1,5 +1,6 @@
 import client from "./index";
 import Snapshot from "./instance/snapshot";
+import File from "./instance/file";
 
 export default class Instance {
     name: string;
@@ -21,6 +22,9 @@ export default class Instance {
 
     snapshot(name: string) {
         return new Snapshot(name, this.client, this);
+    }
+    file(path: string) {
+        return new File(path, this.client, this);
     }
 
 
