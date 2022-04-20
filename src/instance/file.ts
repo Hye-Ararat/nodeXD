@@ -23,12 +23,20 @@ export default class File {
     }
     create(data: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.post(`/1.0/instances/${this.instance.name}/files?path=${this.path}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.post(`/1.0/instances/${this.instance.name}/files?path=${this.path}`, data, {
+                headers: {
+                    "Content-Type": "application/octet-stream"
+                }
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
         })
     }
     edit(data: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.post(`/1.0/instances/${this.instance.name}/files?path=${this.path}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.post(`/1.0/instances/${this.instance.name}/files?path=${this.path}`, data, {
+                headers: {
+                    "Content-Type": "application/octet-stream"
+                }
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
         })
     }
 }
