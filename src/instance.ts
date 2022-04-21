@@ -56,7 +56,13 @@ export default class Instance {
                 reject(error);
             }
         })
-    } // yw do it yourself
+    }
+    consoleLog(): Promise<any> {
+        return new Promise((resolve, reject) => {
+                this.client.request.get(`/1.0/instances/${this.name}/console`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+
+        })
+    }
 
     createSnapshot(name: string, expires_at?: boolean, stateful?: boolean) {
         return new Promise((resolve, reject) => {
