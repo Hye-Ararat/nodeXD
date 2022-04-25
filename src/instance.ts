@@ -20,6 +20,12 @@ export default class Instance {
         })
     }
 
+    partialUpdate(data: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.client.request.patch(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+        }
+        )
+    }
     snapshot(name: string) {
         return new Snapshot(name, this.client, this);
     }
