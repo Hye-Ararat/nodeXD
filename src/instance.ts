@@ -32,6 +32,13 @@ export default class Instance {
         }
         )
     }
+    update(data: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.client.request.put(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+        }
+        )
+    }
+
     snapshot(name: string) {
         return new Snapshot(name, this.client, this);
     }
