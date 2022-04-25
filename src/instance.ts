@@ -19,6 +19,12 @@ export default class Instance {
             this.client.request.get(`/1.0/instances/${this.name}/snapshots?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
         })
     }
+    get state(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.client.request.get(`/1.0/instances/${this.name}/state`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+        }
+        )
+    }
 
     partialUpdate(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
