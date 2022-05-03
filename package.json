@@ -1,6 +1,5 @@
 {
   "_from": "hyexd",
-  "_id": "hyexd@0.0.1",
   "_inBundle": false,
   "_integrity": "sha512-UEbhPml/wCr85D6PjanGpBdRDpt1DZ7kWk/dq3vyTZGFTmbbBspk3hPENtj6cFZ9pv84JPi8b2AxVt3W4Yk/PQ==",
   "_location": "/hyexd",
@@ -59,5 +58,5 @@
     "lint": "eslint . --ext .ts"
   },
   "types": "./dist/index.d.ts",
-  "version": "0.0.28"
+  "version": "0.0.29"
 }
