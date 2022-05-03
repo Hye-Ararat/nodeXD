@@ -1,4 +1,5 @@
 import Client from ".";
+import Forward from "./network/forward";
 
 export default class Network {
     name: string;
@@ -26,5 +27,8 @@ export default class Network {
                 ...data
             }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
         })
+    }
+    forward(listen_address: string) {
+        return new Forward(listen_address, this, this.client);
     }
 }
