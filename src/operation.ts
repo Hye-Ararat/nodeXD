@@ -10,6 +10,6 @@ export default class Operation {
 
     get data(): Promise<any> {
         return new Promise((resolve, reject) => {
-             this.client.request.get(`/1.0/operations/${this.id}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+             this.client.request.get(`/1.0/operations/${this.id}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         }) 
      }}

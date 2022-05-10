@@ -9,7 +9,7 @@ export default class StoragePool {
     }
     get data(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/storage-pools/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/storage-pools/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 }

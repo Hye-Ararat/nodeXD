@@ -43,18 +43,18 @@ export default class Client {
                 headers: {
                     "Content-Type": "application/json"
                 }
-            }).then(({data}) => resolve(data)).catch(err => reject(err.response.data));
+            }).then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
 
     }
     storagePools() {
         return new Promise((resolve, reject) => {
-            this.request.get('/1.0/storage-pools').then(({data}) => resolve(data)).catch(err => reject(err.response.data));
+            this.request.get('/1.0/storage-pools').then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
     }
     networks() {
         return new Promise((resolve, reject) => {
-            this.request.get('/1.0/networks').then(({data}) => resolve(data)).catch(err => reject(err.response.data));
+            this.request.get('/1.0/networks').then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
     }
     network(name: string) {

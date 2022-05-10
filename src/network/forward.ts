@@ -12,17 +12,17 @@ export default class Forward {
     }
     get data(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/networks/${this.network.name}/forwards?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/networks/${this.network.name}/forwards?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     delete(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.delete(`/1.0/networks/${this.network.name}/forwards/${this.listen_address}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.delete(`/1.0/networks/${this.network.name}/forwards/${this.listen_address}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     partialUpdate(data: Object): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.patch(`/1.0/networks/${this.network.name}/forwards/${this.listen_address}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.patch(`/1.0/networks/${this.network.name}/forwards/${this.listen_address}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 

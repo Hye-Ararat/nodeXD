@@ -13,12 +13,12 @@ export default class File {
 
     get data(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.instance.name}/files?path=${this.path}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/instances/${this.instance.name}/files?path=${this.path}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     delete(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.delete(`/1.0/instances/${this.instance.name}/files?path=${this.path}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.delete(`/1.0/instances/${this.instance.name}/files?path=${this.path}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     create(data: string): Promise<any> {
@@ -27,7 +27,7 @@ export default class File {
                 headers: {
                     "Content-Type": "application/octet-stream"
                 }
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     edit(data: string): Promise<any> {
@@ -36,7 +36,7 @@ export default class File {
                 headers: {
                     "Content-Type": "application/octet-stream"
                 }
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 }

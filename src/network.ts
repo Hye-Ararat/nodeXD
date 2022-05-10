@@ -10,12 +10,12 @@ export default class Network {
     }
     get data(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/networks/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/networks/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     get forwards(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/networks/${this.name}/forwards?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/networks/${this.name}/forwards?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     createForward(description: String, listen_address: String, ports: Array<Object>, data?: Object): Promise<any> {
@@ -25,7 +25,7 @@ export default class Network {
                 listen_address: listen_address,
                 ports: ports,
                 ...data
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     forward(listen_address: string) {

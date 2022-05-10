@@ -11,30 +11,30 @@ export default class Instance {
     }
     get data(): Promise<any> {
        return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/instances/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
        }) 
     }
     get snapshots(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}/snapshots?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/instances/${this.name}/snapshots?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     get state(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}/state`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.get(`/1.0/instances/${this.name}/state`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
 
     partialUpdate(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.patch(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.patch(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
     update(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.put(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            this.client.request.put(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
@@ -55,7 +55,7 @@ export default class Instance {
                 force: force,
                 stateful: stateful,
                 timeout: timeout ? timeout : 30
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 
@@ -78,7 +78,7 @@ export default class Instance {
     }
     consoleLog(): Promise<any> {
         return new Promise((resolve, reject) => {
-                this.client.request.get(`/1.0/instances/${this.name}/console`).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));
+                this.client.request.get(`/1.0/instances/${this.name}/console`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
 
         })
     }
@@ -89,6 +89,6 @@ export default class Instance {
                 expires_at,
                 name,
                 stateful
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response.data));})
+            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));})
     }
 }
