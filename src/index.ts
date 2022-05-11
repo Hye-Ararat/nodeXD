@@ -49,7 +49,7 @@ export default class Client {
     }
     storagePools() {
         return new Promise((resolve, reject) => {
-            this.request.get('/1.0/storage-pools?recursion=1').then(({data}) => resolve(data)).catch(err => reject(err.response));
+            this.request.get('/1.0/storage-pools').then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
     }
     networks() {
