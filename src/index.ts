@@ -52,9 +52,9 @@ export default class Client {
             this.request.get('/1.0/storage-pools').then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
     }
-    networks() {
+    networks(recur?: boolean) {
         return new Promise((resolve, reject) => {
-            this.request.get('/1.0/networks').then(({data}) => resolve(data)).catch(err => reject(err.response));
+            this.request.get(`/1.0/networks${recur ? "?recursion=1" : ""}`).then(({data}) => resolve(data)).catch(err => reject(err.response));
         })
     }
     network(name: string) {
