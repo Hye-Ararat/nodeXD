@@ -1,4 +1,5 @@
 import Client from ".";
+import Volume from "./storage-pool/volume";
 
 export default class StoragePool {
     name: string;
@@ -24,5 +25,8 @@ export default class StoragePool {
                 ...data
             }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
+    }
+    volume(name: string) {
+        return new Volume(name, this, this.client);
     }
 }
