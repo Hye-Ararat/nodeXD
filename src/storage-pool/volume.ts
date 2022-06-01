@@ -12,7 +12,7 @@ export default class Volume {
     }
     partialUpdate(data: Object): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.patch(`/1.0/storage-pools/${this.storagePool.name}/volumes/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.patch(`/1.0/storage-pools/${this.storagePool.name}/volumes/custom/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 
