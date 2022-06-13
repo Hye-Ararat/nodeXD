@@ -28,6 +28,11 @@ export default class Network {
             this.client.request.get(`/1.0/networks/${this.name}/leases`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
         })
     }
+    partialUpdate(data: Object): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.client.request.patch(`/1.0/networks/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+        })
+    }
     createForward(description: String, listen_address: String, ports: Array<Object>, data?: Object): Promise<any> {
         return new Promise((resolve, reject) => {
             this.client.request.post(`/1.0/networks/${this.name}/forwards`, {
