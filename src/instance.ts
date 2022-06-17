@@ -10,31 +10,31 @@ export default class Instance {
         this.client = client;
     }
     get data(): Promise<any> {
-       return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
-       }) 
+        return new Promise((resolve, reject) => {
+            this.client.request.get(`/1.0/instances/${this.name}`).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
+        })
     }
     get snapshots(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}/snapshots?recursion=1`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.get(`/1.0/instances/${this.name}/snapshots?recursion=1`).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
         })
     }
     get state(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.get(`/1.0/instances/${this.name}/state`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.get(`/1.0/instances/${this.name}/state`).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
 
     partialUpdate(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.patch(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.patch(`/1.0/instances/${this.name}`, data).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
     update(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.request.put(`/1.0/instances/${this.name}`, data).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.put(`/1.0/instances/${this.name}`, data).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
         }
         )
     }
@@ -55,7 +55,7 @@ export default class Instance {
                 force: force,
                 stateful: stateful,
                 timeout: timeout ? timeout : 30
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            }).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
         })
     }
 
@@ -76,9 +76,30 @@ export default class Instance {
             }
         })
     }
+    exec(command: Array<String>, user?: Number, cwd?: String) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let res = await this.client.request.post(`/1.0/instances/${this.name}/exec`, {
+                    command,
+                    cwd,
+                    user
+                })
+                let ws1 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["0"]}`);
+                let ws2 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["control"]}`);
+                return resolve({
+                    stdout: ws1,
+                    stdin: ws2
+                })
+            } catch (error) {
+                reject(error);
+            }
+
+
+        })
+    }
     consoleLog(): Promise<any> {
         return new Promise((resolve, reject) => {
-                this.client.request.get(`/1.0/instances/${this.name}/console`).then(({data}) => resolve(data)).catch((err) => reject(err.response));
+            this.client.request.get(`/1.0/instances/${this.name}/console`).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
 
         })
     }
@@ -89,6 +110,7 @@ export default class Instance {
                 expires_at,
                 name,
                 stateful
-            }).then(({data}) => resolve(data)).catch((err) => reject(err.response));})
+            }).then(({ data }) => resolve(data)).catch((err) => reject(err.response));
+        })
     }
 }
