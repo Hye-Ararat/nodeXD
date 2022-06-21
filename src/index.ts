@@ -32,7 +32,7 @@ export default class Client {
         }
     }
 
-    createInstance(name: string, type: "virtual-machine" | "container", config: Object) : Promise<any> {
+    createInstance(name: string, type: "virtual-machine" | "container", config: Object): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = {
                 name: name,
@@ -43,18 +43,18 @@ export default class Client {
                 headers: {
                     "Content-Type": "application/json"
                 }
-            }).then(({data}) => resolve(data)).catch(err => reject(err.response));
+            }).then(({ data }) => resolve(data)).catch(err => reject(err.response));
         })
 
     }
-    storagePools() {
+    storagePools(expanded?: boolean) {
         return new Promise((resolve, reject) => {
-            this.request.get('/1.0/storage-pools').then(({data}) => resolve(data)).catch(err => reject(err.response));
+            this.request.get(`/1.0/storage-pools${expanded ? "?recursion=1" : ""}`).then(({ data }) => resolve(data)).catch(err => reject(err.response));
         })
     }
     networks(recur?: boolean) {
         return new Promise((resolve, reject) => {
-            this.request.get(`/1.0/networks${recur ? "?recursion=1" : ""}`).then(({data}) => resolve(data)).catch(err => reject(err.response));
+            this.request.get(`/1.0/networks${recur ? "?recursion=1" : ""}`).then(({ data }) => resolve(data)).catch(err => reject(err.response));
         })
     }
     network(name: string) {
