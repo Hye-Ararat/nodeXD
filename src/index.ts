@@ -32,6 +32,20 @@ export default class Client {
         }
     }
 
+    createNetwork(name: string, config: Object) {
+        return new Promise((resolve, reject) => {
+            const data = {
+                name: name,
+                ...config
+            }
+            this.request.post('/1.0/networks', data, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(({ data }) => resolve(data)).catch(err => reject(err.response));
+        })
+    }
+
     createInstance(name: string, type: "virtual-machine" | "container", config: Object): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = {
