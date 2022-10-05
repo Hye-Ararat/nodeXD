@@ -79,11 +79,12 @@ export default class Instance {
     exec(command: Array<String>, user?: Number, cwd?: String) {
         return new Promise(async (resolve, reject) => {
             try {
-                let res = await this.client.request.post(`/1.0/instances/${this.name}/exec`, {
+                let res1 = await this.client.request.post(`/1.0/instances/${this.name}/exec`, {
                     command,
                     cwd,
                     user
                 })
+                let res = await this.client.request.get(res1.data.operation + `/wait`)
                 let ws1 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["0"]}`);
                 let ws2 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["control"]}`);
                 return resolve({
