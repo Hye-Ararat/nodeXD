@@ -82,7 +82,9 @@ export default class Instance {
                 let res = await this.client.request.post(`/1.0/instances/${this.name}/exec`, {
                     command,
                     cwd,
-                    user
+                    user,
+                    "wait-for-websocket": true,
+                    interactive: true
                 })
                 let ws1 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["0"]}`);
                 let ws2 = this.client.request.websocket(res.data.operation + `/websocket?secret=${res.data.metadata.metadata.fds["control"]}`);
